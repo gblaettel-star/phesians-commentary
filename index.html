@@ -98,9 +98,7 @@
 </head>
 <body>
 
-<div class="nav">
-  <div class="nav-title">Ephesians</div>
-  <select id="unitSelect"></select>
+<div class="nav"><button onclick="navigate(-1)">&#8592;</button><select id="unitSelect"></select><button onclick="navigate(1)">&#8594;</button>
 </div>
 
 <div id="content"></div>
@@ -729,6 +727,11 @@ function loadUnit(num) {
 
 function strip(s){ return s ? s.replace(/<[^>]+>/g,' ').replace(/&[a-z]+;/g,' ').replace(/\s+/g,' ').trim() : ''; }
 
+function navigate(dir){
+  var idx=allKeys.indexOf(currentUnit);
+  var ni=idx+dir;
+  if(ni>=0&&ni<allKeys.length) loadUnit(allKeys[ni]);
+}
 document.getElementById("unitSelect").addEventListener("change", function(){ loadUnit(+this.value); });
 
 if (allKeys.length > 0) {
